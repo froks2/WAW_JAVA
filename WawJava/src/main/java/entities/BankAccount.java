@@ -3,7 +3,6 @@ package entities;
 import base.Entity;
 import exceptions.InvalidBankAccountOwnerException;
 
-import java.math.MathContext;
 import java.util.regex.Pattern;
 
 /**
@@ -24,26 +23,6 @@ public class BankAccount extends Entity {
      * Właściciel konta bankowego
      */
     public Person Owner;
-
-    /**
-     * Metoda tworzy konto bankowe
-     * @param name Nazwa konta
-     * @param accountNumber Nr konta
-     * @param owner Właściciel
-     * @param createdBy ID użytkownika, który utworzył konto bankowe
-     * @return Nowo utworzony obiekt
-     * @throws InvalidBankAccountOwnerException Gdy podany właściciel jest niepoprawny
-     */
-    public BankAccount Create(String name, String accountNumber, Person owner, long createdBy) throws InvalidBankAccountOwnerException {
-        if (owner == null) {
-            throw new InvalidBankAccountOwnerException();
-        }
-
-        var bankAccount = new BankAccount(name, accountNumber, owner);
-        Create(createdBy);
-
-        return bankAccount;
-    }
 
     /**
      * Metoda aktualizuje konto bankowe
@@ -69,9 +48,23 @@ public class BankAccount extends Entity {
         return matcher.find();
     }
 
-    private BankAccount(String name, String accountNumber, Person owner) {
+    /**
+     * Konstruktor tworzący konto bankowe
+     * @param name Nazwa konta
+     * @param accountNumber Nr konta
+     * @param owner Właściciel
+     * @param createdBy ID użytkownika, który utworzył konto bankowe
+     * @throws InvalidBankAccountOwnerException Gdy podany właściciel jest niepoprawny
+     */
+    public BankAccount(String name, String accountNumber, Person owner, long createdBy) throws InvalidBankAccountOwnerException {
+        if (owner == null) {
+            throw new InvalidBankAccountOwnerException();
+        }
+
         this.Name = name;
         this.AccountNumber = accountNumber;
         this.Owner = owner;
+
+        Create(createdBy);
     }
 }

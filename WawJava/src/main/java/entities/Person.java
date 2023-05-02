@@ -30,7 +30,7 @@ public class Person extends Entity {
      * Metoda sprawdzająca czy osoba jest pełnoletnia czy nie
      * @return <c>true</c> jeśli osoba jest pełnoletnia, w innym przypadku <c>false</c>
      */
-    public Boolean isAdult() {
+    public Boolean IsAdult() {
         return this.Age >= 18;
     }
 
@@ -52,25 +52,19 @@ public class Person extends Entity {
     }
 
     /**
-     * Metoda tworzy i zwraca nowo utworzoną osobę.
+     * Konstruktor tworzący osobe.
      * @param firstname Imię
      * @param surname Nazwisko
      * @param age Wiek
      * @param nationality Kraj pochodzenia
      * @param createdBy ID użytkownika, który tworzy encję
-     * @return Nowo utworzony obiekt osoby.
      */
-    public Person Create(String firstname, String surname, int age, String nationality, long createdBy) {
-        var person = new Person(firstname, surname, age, nationality);
-        Create(createdBy);
-
-        return person;
-    }
-
-    private Person(String firstname, String surname, int age, String nationality) {
+    public Person(String firstname, String surname, int age, String nationality, long createdBy) {
         this.Firstname = firstname;
         this.Surname = surname;
         this.Age = age;
         this.Nationality = nationality;
+
+        Create(createdBy);
     }
 }
