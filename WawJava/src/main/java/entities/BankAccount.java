@@ -67,4 +67,13 @@ public class BankAccount extends Entity {
 
         Create(createdBy);
     }
+
+    /**
+     * Zwraca ciąg znaków reprezentujący dane z obiektu
+     * @return Informacje o koncie bankowym.
+     */
+    @Override
+    public String toString() {
+        return this.Owner.toString() + "|" + this.Name + " " + this.AccountNumber;
+    }
 }

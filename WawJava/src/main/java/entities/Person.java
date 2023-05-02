@@ -67,4 +67,13 @@ public class Person extends Entity {
 
         Create(createdBy);
     }
+
+    /**
+     * Zwraca ciąg znaków reprezentujący dane z obiektu
+     * @return Informacje o osobie.
+     */
+    @Override
+    public String toString() {
+        return this.Firstname + " " + this.Surname + " " + this.Age + " " + this.Nationality;
+    }
 }
